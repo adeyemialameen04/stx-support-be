@@ -4,6 +4,7 @@ import { settings } from "./config/settings";
 import { swaggerUI } from "@hono/swagger-ui";
 import { registerUserEndpoints } from "./users/endpoints";
 import { openApiDoc } from "./api";
+import { main } from "./db";
 
 const app = new Hono();
 app.use("*", logger());
@@ -18,6 +19,7 @@ app.get("/", (c) => {
 });
 
 registerUserEndpoints(app);
+main();
 
-console.log(settings);
+// console.log(settings);
 export default app;
