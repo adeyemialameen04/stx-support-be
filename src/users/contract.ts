@@ -1,8 +1,6 @@
 import { initContract } from "@ts-rest/core";
 import { z } from "zod";
 import { createPath } from "../utils/path";
-// import { extendZodWithOpenApi } from "@anatine/zod-openapi";
-// extendZodWithOpenApi(z);
 const c = initContract();
 
 export const UserSchema = z.object({
