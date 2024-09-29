@@ -1,9 +1,10 @@
 import { initServer } from "ts-rest-hono";
-import { contract, UserSchema } from "./contract";
+import { contract, UserCreateSchema, UserSchema } from "./contract";
 import { nanoid } from "nanoid";
 import { z } from "zod";
 import { db } from "../db";
 import { users as userTable } from "../db/schema/users";
+import logger from "../utils/logger";
 
 const s = initServer();
 
@@ -24,11 +25,9 @@ export const router = s.router(contract, {
     };
   },
   createUser: async ({ body: { username } }) => {
-    // const user = {
-    //   // uuid: nanoid(),
-    //   username,
-    // };
+    logger.info(username);
     const user = await db.insert(userTable).values({ username }).returning();
+    console.log(user);
 
     return {
       status: 201,
