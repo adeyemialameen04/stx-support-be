@@ -1,7 +1,10 @@
 {
   "name": "stx-support-be",
   "scripts": {
-    "dev": "bun run --hot src/app.ts"
+    "dev": "bun run --hot src/app.ts",
+    "gen": "bun drizzle-kit generate",
+    "mig": "bun migrate.ts",
+    "studio": "bunx drizzle-kit studio"
   },
   "dependencies": {
     "@hono/swagger-ui": "^0.4.1",
