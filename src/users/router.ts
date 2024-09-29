@@ -2,6 +2,8 @@ import { initServer } from "ts-rest-hono";
 import { contract, UserSchema } from "./contract";
 import { nanoid } from "nanoid";
 import { z } from "zod";
+import { db } from "../db";
+import { users as userTable } from "../db/schema/users";
 
 const s = initServer();
 
@@ -10,23 +12,23 @@ const users: User[] = [];
 
 export const router = s.router(contract, {
   getUsers: async () => {
-    // const users = [
-    //   { username: "user1" },
-    //   { username: "user2" },
-    //   { username: "user3" },
-    // ];
+    const usersDb = await db.select().from(userTable);
+    const validUsers: User[] = usersDb.map((user) => ({
+      uuid: user.uuid,
+      username: user.username ?? undefined,
+    }));
 
     return {
       status: 200,
-      body: users,
+      body: validUsers,
     };
   },
   createUser: async ({ body: { username } }) => {
-    const user = {
-      uuid: nanoid(),
-      username,
-    };
-    users.push(user);
+    // const user = {
+    //   // uuid: nanoid(),
+    //   username,
+    // };
+    const user = await db.insert(userTable).values({ username }).returning();
 
     return {
       status: 201,
