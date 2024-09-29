@@ -1,20 +1,21 @@
 import { initContract } from "@ts-rest/core";
 import { z } from "zod";
 import { createPath } from "../utils/path";
+import { notFoundSchema } from "../utils/api";
 const c = initContract();
 
-export const UserSchema = z.object({
-  uuid: z.string().uuid(),
-  username: z.string().optional(),
+export const userSchema = z.object({
+  id: z.string().uuid(),
+  username: z.string().nullable().optional(),
 });
-export const UserCreateSchema = UserSchema.omit({ uuid: true });
+export const userCreateSchema = userSchema.omit({ id: true });
 
 export const contract = c.router({
   getUsers: {
     method: "GET",
     path: createPath("/users/all"),
     responses: {
-      200: UserSchema.array(),
+      200: userSchema.array(),
     },
     summary: "Get all users",
     metadata: {
@@ -25,10 +26,24 @@ export const contract = c.router({
     method: "POST",
     path: createPath("/users"),
     responses: {
-      201: UserSchema,
+      201: userSchema,
     },
     summary: "create a user",
-    body: UserCreateSchema,
+    body: userCreateSchema,
+    metadata: {
+      openApiTags: ["users"],
+    },
+  },
+  getUser: {
+    method: "GET",
+    path: createPath("/users"),
+    query: z.object({
+      userId: z.string().uuid(),
+    }),
+    responses: {
+      200: userSchema,
+      404: notFoundSchema,
+    },
     metadata: {
       openApiTags: ["users"],
     },
