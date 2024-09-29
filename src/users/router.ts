@@ -1,19 +1,36 @@
 import { initServer } from "ts-rest-hono";
-import { contract } from "./contract";
+import { contract, UserSchema } from "./contract";
+import { nanoid } from "nanoid";
+import { z } from "zod";
 
 const s = initServer();
 
+type User = z.infer<typeof UserSchema>;
+const users: User[] = [];
+
 export const router = s.router(contract, {
   getUsers: async () => {
-    const users = [
-      { username: "user1" },
-      { username: "user2" },
-      { username: "user3" },
-    ];
+    // const users = [
+    //   { username: "user1" },
+    //   { username: "user2" },
+    //   { username: "user3" },
+    // ];
 
     return {
       status: 200,
       body: users,
+    };
+  },
+  createUser: async ({ body: { username } }) => {
+    const user = {
+      uuid: nanoid(),
+      username,
+    };
+    users.push(user);
+
+    return {
+      status: 201,
+      body: user,
     };
   },
 });

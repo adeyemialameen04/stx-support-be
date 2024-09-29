@@ -1,7 +1,6 @@
 import { generateOpenApi } from "@ts-rest/open-api";
 import { contracts } from "./contracts";
-import { getOpenAPITags, router } from "../users/router";
-import { contract } from "../users/contract";
+import { settings } from "../config/settings";
 
 const hasCustomTags = (
   metadata: unknown,
@@ -21,13 +20,13 @@ const hasSecurity = (
   );
 };
 
-// @ts-ignore
 export const openApiDoc = generateOpenApi(
+  // @ts-ignore
   contracts,
   {
     info: {
-      title: "Stx-Support Api",
-      version: "1.0.0",
+      title: settings.PROJECT_NAME,
+      version: settings.VERSION,
     },
     servers: [{ url: "http://localhost:3000" }],
     tags: [{ name: "users", description: "User operations" }],

@@ -11,7 +11,7 @@ app.use("*", logger());
 app.get("/openapi.json", (c) => {
   return c.json(openApiDoc);
 });
-app.get("/ui", swaggerUI({ url: "/openapi.json" }));
+app.get("/docs", swaggerUI({ url: "/openapi.json" }));
 
 app.get("/", (c) => {
   return c.json({ message: "Hello Hono!" });
