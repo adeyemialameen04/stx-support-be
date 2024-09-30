@@ -3,13 +3,8 @@ import { z } from "zod";
 import { createPath } from "../utils/path";
 import { notFoundSchema } from "../utils/api";
 import { insertUserSchema, selectUserSchema } from "../db/schema/users";
-const c = initContract();
 
-// export const userSchema = z.object({
-//   id: z.string().uuid(),
-//   username: z.string().nullable().optional(),
-// });
-// export const userCreateSchema = userSchema.omit({ id: true });
+const c = initContract();
 
 export const contract = c.router({
   getUsers: {
@@ -17,10 +12,12 @@ export const contract = c.router({
     path: createPath("/users/all"),
     responses: {
       200: selectUserSchema.array(),
+      401: z.object({ error: z.string() }),
     },
     summary: "Get all users",
     metadata: {
       openApiTags: ["users"],
+      openApiSecurity: [{ BearerAuth: [] }],
     },
   },
   createUser: {
@@ -28,11 +25,13 @@ export const contract = c.router({
     path: createPath("/users"),
     responses: {
       201: selectUserSchema,
+      401: z.object({ error: z.string() }),
     },
     summary: "create a user",
     body: insertUserSchema.omit({ id: true }),
     metadata: {
       openApiTags: ["users"],
+      openApiSecurity: [{ BearerAuth: [] }],
     },
   },
   getUser: {
@@ -44,9 +43,11 @@ export const contract = c.router({
     responses: {
       200: selectUserSchema,
       404: notFoundSchema,
+      401: z.object({ error: z.string() }),
     },
     metadata: {
       openApiTags: ["users"],
+      openApiSecurity: [{ BearerAuth: [] }],
     },
   },
 });
