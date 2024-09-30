@@ -11,66 +11,78 @@ export const loginSchema = z.object({
   password: z.string().min(6),
 });
 
-export const authContract = c.router({
-  login: {
-    method: "POST",
-    path: createPath("/auth/login"),
-    responses: {
-      200: z.object({
-        accessToken: z.string(),
-        refreshToken: z.string(),
-      }),
-      401: z.object({
-        status_code: z.number().default(401),
-        detail: z.string().default("Invalid credentials"),
-      }),
-      404: z.object({
-        status_code: z.number().default(404),
-        detail: z.string().default("User does not exist"),
-      }),
+export const authContract = c.router(
+  {
+    login: {
+      method: "POST",
+      path: "/auth/login",
+      responses: {
+        200: z.object({
+          message: z.string().default("Login successful"),
+          accessToken: z.string(),
+          refreshToken: z.string(),
+          accessTokenExpiryTimestamp: z.number(),
+          refreshTokenExpiryTimestamp: z.number(),
+          user: z.object({
+            id: z.string().uuid(),
+            stxAddressMainnet: z.string(),
+          }),
+        }),
+        401: z.object({
+          status_code: z.number().default(401),
+          detail: z.string().default("Invalid credentials"),
+        }),
+        404: z.object({
+          status_code: z.number().default(404),
+          detail: z.string().default("User does not exist"),
+        }),
+      },
+      metadata: {
+        openApiTags: ["auth"],
+      },
+      body: loginSchema,
+      summary: "User login",
     },
-    metadata: {
-      openApiTags: ["auth"],
+    signup: {
+      method: "POST",
+      path: "/auth/signup",
+      responses: {
+        200: selectUserSchema,
+        401: z.object({ error: z.string() }),
+      },
+      metadata: {
+        openApiTags: ["auth"],
+      },
+      body: loginSchema,
+      summary: "User Signup",
     },
-    body: loginSchema,
-    summary: "User login",
+    refresh: {
+      method: "GET",
+      path: "/auth/refresh",
+      responses: {
+        200: z.object({ accessToken: z.string() }),
+        401: z.object({ error: z.string() }),
+      },
+      metadata: {
+        openApiTags: ["auth"],
+        openApiSecurity: [{ [tokens.refresh]: [] }],
+      },
+      summary: "Refresh access token",
+    },
+    logout: {
+      method: "GET",
+      path: "/auth/logout",
+      responses: {
+        200: z.object({ message: z.string() }),
+      },
+      summary: "User logout",
+      metadata: {
+        openApiTags: ["auth"],
+        openApiSecurity: [{ [tokens.access]: [] }],
+      },
+    },
   },
-  signup: {
-    method: "POST",
-    path: createPath("/auth/signup"),
-    responses: {
-      200: selectUserSchema,
-      401: z.object({ error: z.string() }),
-    },
-    metadata: {
-      openApiTags: ["auth"],
-    },
-    body: loginSchema,
-    summary: "User Signup",
+  {
+    pathPrefix: "/api/v1",
   },
-  refresh: {
-    method: "GET",
-    path: createPath("/auth/refresh"),
-    responses: {
-      200: z.object({ accessToken: z.string() }),
-      401: z.object({ error: z.string() }),
-    },
-    metadata: {
-      openApiTags: ["auth"],
-      openApiSecurity: [{ [tokens.refresh]: [] }],
-    },
-    summary: "Refresh access token",
-  },
-  logout: {
-    method: "GET",
-    path: createPath("/auth/logout"),
-    responses: {
-      200: z.object({ message: z.string() }),
-    },
-    summary: "User logout",
-    metadata: {
-      openApiTags: ["auth"],
-      openApiSecurity: [{ [tokens.access]: [] }],
-    },
-  },
-});
+);

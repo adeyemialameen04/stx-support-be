@@ -1,7 +1,9 @@
 import logger from "./logger";
 import { v4 as uuidv4 } from "uuid";
-import { decode, sign, verify } from "hono/jwt";
+import { sign, verify } from "hono/jwt";
 import { settings } from "../config/settings";
+import { z } from "zod";
+import { insertUserSchema } from "../db/schema/users";
 
 export const generatePasswdHash = async (password: string): Promise<string> => {
   const hash = await Bun.password.hash(password);
@@ -24,15 +26,15 @@ interface UserData {
   // ... other user properties
 }
 
-// Auth settings (in a real app, these would be in a secure configuration)
-//
 interface TokenResult {
   token: string;
   expiryTimestamp: number;
 }
 
-async function createAccessToken(
-  data: UserData,
+// type User = z.infer<typeof insertUserSchema>;
+
+export async function createAccessToken(
+  data: any,
   expiry: number | null = null,
   isRefreshToken: boolean = false,
 ): Promise<TokenResult> {
@@ -53,4 +55,14 @@ async function createAccessToken(
     token,
     expiryTimestamp: expiryTime,
   };
+}
+
+export async function decodeToken(token: string): Promise<any | null> {
+  try {
+    const payload = await verify(token, settings.SECRET_KEY);
+    return payload;
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return null;
+  }
 }

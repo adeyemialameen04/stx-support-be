@@ -24,7 +24,11 @@ app.get("/", (c) => {
 });
 app.route(createPath("/auth"), authRouter);
 
-app.use("/users/*", authMiddleware);
+app.use(createPath("/users/*"), authMiddleware);
+// app.get("/user", aut async (c) => {
+//   const user = c.var.get("user");
+//   return c.json({ user: user });
+// });
 
 registerUserEndpoints(app);
 
