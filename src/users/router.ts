@@ -16,15 +16,15 @@ export const router = s.router(contract, {
       body: usersDb,
     };
   },
-  createUser: async ({ body: { username } }) => {
-    logger.info(username);
-    const [user] = await db.insert(userTable).values({ username }).returning();
-    console.log(user);
-    return {
-      status: 201,
-      body: user,
-    };
-  },
+  // createUser: async ({ body: { username } }) => {
+  //   logger.info(username);
+  //   const [user] = await db.insert(userTable).values({ username }).returning();
+  //   console.log(user);
+  //   return {
+  //     status: 201,
+  //     body: user,
+  //   };
+  // },
   getUser: async ({ query: { userId } }) => {
     const [user] = await db
       .select()

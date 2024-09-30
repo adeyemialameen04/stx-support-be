@@ -17,23 +17,23 @@ export const contract = c.router({
     summary: "Get all users",
     metadata: {
       openApiTags: ["users"],
-      openApiSecurity: [{ BearerAuth: [] }],
+      // openApiSecurity: [{ BearerAuth: [] }],
     },
   },
-  createUser: {
-    method: "POST",
-    path: createPath("/users"),
-    responses: {
-      201: selectUserSchema,
-      401: z.object({ error: z.string() }),
-    },
-    summary: "create a user",
-    body: insertUserSchema.omit({ id: true }),
-    metadata: {
-      openApiTags: ["users"],
-      openApiSecurity: [{ BearerAuth: [] }],
-    },
-  },
+  // createUser: {
+  //   method: "POST",
+  //   path: createPath("/users"),
+  //   responses: {
+  //     201: selectUserSchema,
+  //     401: z.object({ error: z.string() }),
+  //   },
+  //   summary: "create a user",
+  //   body: insertUserSchema.omit({ id: true }),
+  //   metadata: {
+  //     openApiTags: ["users"],
+  //     openApiSecurity: [{ BearerAuth: [] }],
+  //   },
+  // },
   getUser: {
     method: "GET",
     path: createPath("/users"),
@@ -47,7 +47,7 @@ export const contract = c.router({
     },
     metadata: {
       openApiTags: ["users"],
-      openApiSecurity: [{ BearerAuth: [] }],
+      openApiSecurity: [{ AccessTokenBearer: [] }],
     },
   },
 });
