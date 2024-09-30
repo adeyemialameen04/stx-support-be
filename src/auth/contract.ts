@@ -11,6 +11,16 @@ export const loginSchema = z.object({
   password: z.string().min(6),
 });
 
+export const payloadSchema = z.object({
+  user: z.object({
+    stxAddressMainnet: z.string(),
+    id: z.string().uuid(),
+  }),
+  exp: z.number(),
+  jti: z.string().uuid(),
+  refresh_token: z.boolean(),
+});
+
 export const authContract = c.router(
   {
     login: {
