@@ -7,6 +7,7 @@ import { openApiDoc } from "./api";
 import { main } from "./db";
 import { authRouter } from "./auth/router";
 import { authMiddleware } from "./auth/middleware";
+import { createPath } from "./utils/path";
 
 const app = new Hono();
 app.use("*", logger());
@@ -19,9 +20,12 @@ app.get("/docs", swaggerUI({ url: "/openapi.json" }));
 app.get("/", (c) => {
   return c.json({ message: "Hello Hono!" });
 });
-app.route("/auth", authRouter);
+app.route(createPath("/auth"), authRouter);
+
 app.use("/users/*", authMiddleware);
+
 registerUserEndpoints(app);
+
 main();
 
 export default app;
