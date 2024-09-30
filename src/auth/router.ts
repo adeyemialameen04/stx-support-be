@@ -1,5 +1,4 @@
 import { Hono } from "hono";
-import { sign, verify } from "jsonwebtoken";
 import { loginSchema } from "./contract";
 import { handleValidation } from "../utils/validation";
 import { db } from "../db";
@@ -11,7 +10,12 @@ import {
   generatePasswdHash,
   verifyPasswdHash,
 } from "../utils/auth";
-import { accessTokenMiddleware, authMiddleware } from "./middleware";
+import {
+  accessTokenMiddleware,
+  refreshTokenMiddleware,
+  validTokenMiddleware,
+} from "./middleware";
+import { addJtiRevoked } from "../db/redis";
 
 export const authRouter = new Hono();
 
@@ -51,10 +55,14 @@ authRouter.post("/login", async (c) => {
       const {
         token: refreshToken,
         expiryTimestamp: refreshTokenExpiryTimestamp,
-      } = await createAccessToken({
-        stxAddressMainnet: existingUser.stxAddressMainnet as string,
-        id: existingUser.id,
-      });
+      } = await createAccessToken(
+        {
+          stxAddressMainnet: existingUser.stxAddressMainnet as string,
+          id: existingUser.id,
+        },
+        604800,
+        true,
+      );
 
       return c.json(
         {
@@ -115,33 +123,42 @@ authRouter.post("/signup", async (c) => {
   }
 });
 
-authRouter.get("/refresh", async (c) => {
-  const { refreshToken } = await c.req.json();
-  try {
-    const decoded = verify(
-      refreshToken,
-      process.env.JWT_REFRESH_SECRET as string,
-    ) as { username: string };
-    const accessToken = sign(
-      { username: decoded.username },
-      process.env.JWT_SECRET as string,
-      { expiresIn: "15m" },
-    );
-    return c.json({ accessToken });
-  } catch (error) {
-    c.status(401);
-    return c.json({ error: "Invalid refresh token" });
-  }
-});
+authRouter.get(
+  "/refresh",
+  validTokenMiddleware,
+  refreshTokenMiddleware,
+  async (c) => {
+    try {
+      const payload = c.get("jwtPayload");
+      const {
+        token: accessToken,
+        expiryTimestamp: accessTokenExpiryTimestamp,
+      } = await createAccessToken({
+        stxAddressMainnet: payload.user.stxAddressMainnet,
+        id: payload.user.id,
+      });
 
-authRouter.get("/logout", accessTokenMiddleware, async (c) => {
-  // Implement logout logic (e.g., invalidate refresh token)
-  const user = c.get("user");
-  console.log(JSON.stringify(user, null, 2));
-  return c.json(
-    {
-      message: `Logged ${user.stxAddressMainnet} out successfully`,
-    },
-    200,
-  );
-});
+      return c.json({ accessToken, accessTokenExpiryTimestamp });
+    } catch (error) {
+      c.status(401);
+      return c.json({ error: "Invalid refresh token" });
+    }
+  },
+);
+
+authRouter.get(
+  "/logout",
+  validTokenMiddleware,
+  accessTokenMiddleware,
+  async (c) => {
+    const payload = c.get("jwtPayload");
+    console.log(JSON.stringify(payload, null, 2));
+    await addJtiRevoked(payload?.jti);
+    return c.json(
+      {
+        message: `Logged ${payload.user.stxAddressMainnet} out successfully`,
+      },
+      200,
+    );
+  },
+);
