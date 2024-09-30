@@ -8,9 +8,11 @@ import { main } from "./db";
 import { authRouter } from "./auth/router";
 import { authMiddleware } from "./auth/middleware";
 import { createPath } from "./utils/path";
+import { zodErrorHandler } from "./middleware/zod-error-handler";
 
 const app = new Hono();
 app.use("*", logger());
+app.use("*", zodErrorHandler);
 
 app.get("/openapi.json", (c) => {
   return c.json(openApiDoc);

@@ -2,6 +2,7 @@ import { z } from "zod";
 import { initContract } from "@ts-rest/core";
 import { createPath } from "../utils/path";
 import { tokens } from "../utils/tokens";
+import { selectUserSchema } from "../db/schema/users";
 
 const c = initContract();
 
@@ -19,7 +20,14 @@ export const authContract = c.router({
         accessToken: z.string(),
         refreshToken: z.string(),
       }),
-      401: z.object({ error: z.string() }),
+      401: z.object({
+        status_code: z.number().default(401),
+        detail: z.string().default("Invalid credentials"),
+      }),
+      404: z.object({
+        status_code: z.number().default(404),
+        detail: z.string().default("User does not exist"),
+      }),
     },
     metadata: {
       openApiTags: ["auth"],
@@ -31,10 +39,7 @@ export const authContract = c.router({
     method: "POST",
     path: createPath("/auth/signup"),
     responses: {
-      200: z.object({
-        accessToken: z.string(),
-        refreshToken: z.string(),
-      }),
+      200: selectUserSchema,
       401: z.object({ error: z.string() }),
     },
     metadata: {

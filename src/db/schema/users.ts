@@ -14,6 +14,7 @@ export const users = pgTable(
     stxAddressMainnet: text("stx_address_mainnet"),
     btcAddressTestnet: text("btc_address_testnet"),
     btcAddressMainnet: text("btc_address_mainnet"),
+    password_hash: text("password_hash").notNull(),
   },
   (table) => {
     return {
@@ -23,4 +24,6 @@ export const users = pgTable(
 );
 
 export const insertUserSchema = createInsertSchema(users);
-export const selectUserSchema = createSelectSchema(users);
+export const selectUserSchema = createSelectSchema(users).omit({
+  password_hash: true,
+});

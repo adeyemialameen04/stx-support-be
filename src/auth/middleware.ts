@@ -9,6 +9,7 @@ export const authMiddleware = async (c: Context, next: () => Promise<void>) => {
     c.status(401);
     return c.json({ error: "Unauthorized" });
   }
+
   const token = authHeader.split(" ")[1];
 
   try {
