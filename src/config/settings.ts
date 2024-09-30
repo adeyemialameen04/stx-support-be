@@ -1,6 +1,3 @@
-// import dotenv from 'dotenv';
-// dotenv.config();
-
 export const settings = {
   API_V1_PREFIX: process.env.API_V1_PREFIX || "/api/v1", // Default value if not set
   PROJECT_NAME: process.env.PROJECT_NAME || "Stx-Support",

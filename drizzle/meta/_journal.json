@@ -15,6 +15,13 @@
       "when": 1727644739218,
       "tag": "0001_goofy_klaw",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1727657115381,
+      "tag": "0002_curved_bucky",
+      "breakpoints": true
     }
   ]
 }

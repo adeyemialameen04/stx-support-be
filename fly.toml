@@ -1,0 +1,4 @@
+app = "stx-support"
+
+[build]
+  builder = "bun"
