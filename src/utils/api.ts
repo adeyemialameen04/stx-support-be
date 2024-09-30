@@ -14,3 +14,8 @@ export const notFoundSchema = z.object({
   status: z.number(),
   detail: z.string(),
 });
+
+export const createErrorResponse = (statusCode: number, detail: string) => ({
+  status_code: statusCode,
+  detail,
+});

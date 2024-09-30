@@ -1,44 +1,76 @@
-import { Hono } from "hono";
-import { sign } from "jsonwebtoken";
 import { z } from "zod";
 import { initContract } from "@ts-rest/core";
+import { createPath } from "../utils/path";
+import { tokens } from "../utils/tokens";
+import { selectUserSchema } from "../db/schema/users";
 
 const c = initContract();
+
+export const loginSchema = z.object({
+  stxAddressMainnet: z.string().min(1),
+  password: z.string().min(6),
+});
 
 export const authContract = c.router({
   login: {
     method: "POST",
-    path: "/auth/login",
+    path: createPath("/auth/login"),
     responses: {
       200: z.object({
         accessToken: z.string(),
         refreshToken: z.string(),
       }),
-      401: z.object({ error: z.string() }),
+      401: z.object({
+        status_code: z.number().default(401),
+        detail: z.string().default("Invalid credentials"),
+      }),
+      404: z.object({
+        status_code: z.number().default(404),
+        detail: z.string().default("User does not exist"),
+      }),
     },
-    body: z.object({
-      username: z.string(),
-      password: z.string(),
-    }),
+    metadata: {
+      openApiTags: ["auth"],
+    },
+    body: loginSchema,
     summary: "User login",
   },
-  refresh: {
+  signup: {
     method: "POST",
-    path: "/auth/refresh",
+    path: createPath("/auth/signup"),
+    responses: {
+      200: selectUserSchema,
+      401: z.object({ error: z.string() }),
+    },
+    metadata: {
+      openApiTags: ["auth"],
+    },
+    body: loginSchema,
+    summary: "User Signup",
+  },
+  refresh: {
+    method: "GET",
+    path: createPath("/auth/refresh"),
     responses: {
       200: z.object({ accessToken: z.string() }),
       401: z.object({ error: z.string() }),
     },
-    body: z.object({ refreshToken: z.string() }),
+    metadata: {
+      openApiTags: ["auth"],
+      openApiSecurity: [{ [tokens.refresh]: [] }],
+    },
     summary: "Refresh access token",
   },
   logout: {
-    method: "POST",
-    path: "/auth/logout",
+    method: "GET",
+    path: createPath("/auth/logout"),
     responses: {
       200: z.object({ message: z.string() }),
     },
-    body: z.object({ refreshToken: z.string() }),
     summary: "User logout",
+    metadata: {
+      openApiTags: ["auth"],
+      openApiSecurity: [{ [tokens.access]: [] }],
+    },
   },
 });
