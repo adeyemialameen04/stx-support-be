@@ -136,3 +136,117 @@
 {"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:23:26.443Z"}
 {"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:24:31.310Z"}
 {"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:31:50.580Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:32:57.556Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:33:12.082Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:35:17.400Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:36:05.232Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:37:52.312Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:39:16.894Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:40:39.282Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:40:44.401Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:43:10.621Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:44:18.362Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:44:29.708Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"about":null,"btcAddressMainnet":null,"btcAddressTestnet":null,"coverImg":null,"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","name":null,"password_hash":"$argon2id$v=19$m=65536,t=2,p=1$F1dh1ADCPPhU5nUQVESEhwJNzK+CGMXpG5CDnxUylUg$54VdXxEQvNOpVNetPpjo+CM2u9XtsbM0Be+vfmGJyCU","profileImg":null,"stxAddressMainnet":"string","stxAddressTestnet":null,"username":null},"timestamp":"2024-09-30T11:45:02.776Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"about":null,"btcAddressMainnet":null,"btcAddressTestnet":null,"coverImg":null,"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","name":null,"password_hash":"$argon2id$v=19$m=65536,t=2,p=1$F1dh1ADCPPhU5nUQVESEhwJNzK+CGMXpG5CDnxUylUg$54VdXxEQvNOpVNetPpjo+CM2u9XtsbM0Be+vfmGJyCU","profileImg":null,"stxAddressMainnet":"string","stxAddressTestnet":null,"username":null},"timestamp":"2024-09-30T11:45:10.252Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:45:40.275Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:48:08.365Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T11:48:27.103Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T16:18:32.366Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"about":null,"btcAddressMainnet":null,"btcAddressTestnet":null,"coverImg":null,"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","name":null,"password_hash":"$argon2id$v=19$m=65536,t=2,p=1$F1dh1ADCPPhU5nUQVESEhwJNzK+CGMXpG5CDnxUylUg$54VdXxEQvNOpVNetPpjo+CM2u9XtsbM0Be+vfmGJyCU","profileImg":null,"stxAddressMainnet":"string","stxAddressTestnet":null,"username":null},"timestamp":"2024-09-30T16:18:42.259Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T16:25:28.534Z"}
+{"level":"\u001b[32minfo\u001b[39m","timestamp":"2024-09-30T16:32:13.913Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"newuser","timestamp":"2024-09-30T16:32:14.033Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"$argon2id$v=19$m=65536,t=2,p=1$cArORjlZx5AilU6PiVVzhrtlKYQA7sM3fTFuwYJtMxc$hjIxNGnWZbo+9wYRqr8jClwS3Iom0w7fmEuAkguyd8c","timestamp":"2024-09-30T16:32:14.033Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:17:18.558Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:17:51.261Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:18:00.156Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:18:23.692Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:18:45.255Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"about":null,"btcAddressMainnet":null,"btcAddressTestnet":null,"coverImg":null,"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","name":null,"password_hash":"$argon2id$v=19$m=65536,t=2,p=1$F1dh1ADCPPhU5nUQVESEhwJNzK+CGMXpG5CDnxUylUg$54VdXxEQvNOpVNetPpjo+CM2u9XtsbM0Be+vfmGJyCU","profileImg":null,"stxAddressMainnet":"string","stxAddressTestnet":null,"username":null},"timestamp":"2024-09-30T17:18:56.211Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:19:26.896Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"about":null,"btcAddressMainnet":null,"btcAddressTestnet":null,"coverImg":null,"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","name":null,"password_hash":"$argon2id$v=19$m=65536,t=2,p=1$F1dh1ADCPPhU5nUQVESEhwJNzK+CGMXpG5CDnxUylUg$54VdXxEQvNOpVNetPpjo+CM2u9XtsbM0Be+vfmGJyCU","profileImg":null,"stxAddressMainnet":"string","stxAddressTestnet":null,"username":null},"timestamp":"2024-09-30T17:19:34.001Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:20:24.097Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T17:20:25.910Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T17:20:34.993Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T17:20:41.572Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T17:21:03.293Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"exp":1727717674,"jti":"12026830-dca9-4988-9833-75628bab394b","refresh_token":false,"user":{"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","stxAddressMainnet":"string"}},"timestamp":"2024-09-30T17:21:03.298Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"exp":1727717674,"jti":"12026830-dca9-4988-9833-75628bab394b","refresh_token":false,"user":{"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","stxAddressMainnet":"string"}},"timestamp":"2024-09-30T17:21:03.299Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:23:47.941Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:24:19.841Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:29:55.213Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:29:56.604Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:39:00.174Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:39:20.039Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:41:32.720Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:41:40.359Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:42:50.608Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:46:55.227Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:46:59.691Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:48:12.760Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:48:21.534Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:49:54.173Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:50:29.578Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:50:44.911Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:50:55.166Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T17:51:00.114Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:52:07.699Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:52:13.755Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T17:52:17.743Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T17:52:33.279Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"about":null,"btcAddressMainnet":null,"btcAddressTestnet":null,"coverImg":null,"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","name":null,"password_hash":"$argon2id$v=19$m=65536,t=2,p=1$F1dh1ADCPPhU5nUQVESEhwJNzK+CGMXpG5CDnxUylUg$54VdXxEQvNOpVNetPpjo+CM2u9XtsbM0Be+vfmGJyCU","profileImg":null,"stxAddressMainnet":"string","stxAddressTestnet":null,"username":null},"timestamp":"2024-09-30T17:52:46.388Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T17:53:06.192Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"exp":1727719666,"jti":"26e74f27-4e2b-47e2-8353-011e6eada6ff","refresh_token":false,"user":{"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","stxAddressMainnet":"string"}},"timestamp":"2024-09-30T17:53:06.193Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"exp":1727719666,"jti":"26e74f27-4e2b-47e2-8353-011e6eada6ff","refresh_token":false,"user":{"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","stxAddressMainnet":"string"}},"timestamp":"2024-09-30T17:53:06.194Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:53:23.893Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T17:53:34.253Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"exp":1727719666,"jti":"26e74f27-4e2b-47e2-8353-011e6eada6ff","refresh_token":false,"user":{"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","stxAddressMainnet":"string"}},"timestamp":"2024-09-30T17:53:34.258Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"exp":1727719666,"jti":"26e74f27-4e2b-47e2-8353-011e6eada6ff","refresh_token":false,"user":{"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","stxAddressMainnet":"string"}},"timestamp":"2024-09-30T17:53:34.258Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"exp":1727719666,"jti":"26e74f27-4e2b-47e2-8353-011e6eada6ff","refresh_token":false,"user":{"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","stxAddressMainnet":"string"}},"timestamp":"2024-09-30T17:53:34.259Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T17:55:15.821Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T17:55:17.579Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"exp":1727719666,"jti":"26e74f27-4e2b-47e2-8353-011e6eada6ff","refresh_token":false,"user":{"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","stxAddressMainnet":"string"}},"timestamp":"2024-09-30T17:55:17.581Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"exp":1727719666,"jti":"26e74f27-4e2b-47e2-8353-011e6eada6ff","refresh_token":false,"user":{"id":"7ea34a00-cd5a-4d38-85fd-888885bc4973","stxAddressMainnet":"string"}},"timestamp":"2024-09-30T17:55:17.582Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:15:43.127Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:15:54.288Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:15:59.298Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:16:05.590Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:17:05.547Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:17:08.134Z"}
+{"expiredAt":"2024-09-30T18:07:46.000Z","level":"\u001b[31merror\u001b[39m","message":"jwt expired","name":"TokenExpiredError","stack":"Error\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/jsonwebtoken/verify.js:190:21)\n    at getSecret (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/jsonwebtoken/verify.js:97:14)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/jsonwebtoken/verify.js:101:10)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/src/auth/middleware.ts:46:21)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/src/auth/middleware.ts:35:66)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/hono/dist/compose.js:29:23)\n    at dispatch (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/hono/dist/compose.js:7:32)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/src/middleware/zod-error-handler.ts:6:11)\n    at zodErrorHandler (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/src/middleware/zod-error-handler.ts:4:39)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/hono/dist/compose.js:29:23)","timestamp":"2024-09-30T18:17:08.139Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:19:35.494Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:19:46.468Z"}
+{"expiredAt":"2024-09-30T18:07:46.000Z","level":"\u001b[31merror\u001b[39m","message":"jwt expired","name":"TokenExpiredError","stack":"Error\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/jsonwebtoken/verify.js:190:21)\n    at getSecret (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/jsonwebtoken/verify.js:97:14)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/jsonwebtoken/verify.js:101:10)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/src/auth/middleware.ts:47:21)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/src/auth/middleware.ts:36:66)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/hono/dist/compose.js:29:23)\n    at dispatch (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/hono/dist/compose.js:7:32)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/src/middleware/zod-error-handler.ts:6:11)\n    at zodErrorHandler (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/src/middleware/zod-error-handler.ts:4:39)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/hono/dist/compose.js:29:23)","timestamp":"2024-09-30T18:19:46.474Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:19:49.703Z"}
+{"expiredAt":"2024-09-30T18:07:46.000Z","level":"\u001b[31merror\u001b[39m","message":"jwt expired","name":"TokenExpiredError","stack":"Error\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/jsonwebtoken/verify.js:190:21)\n    at getSecret (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/jsonwebtoken/verify.js:97:14)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/jsonwebtoken/verify.js:101:10)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/src/auth/middleware.ts:47:21)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/src/auth/middleware.ts:36:66)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/hono/dist/compose.js:29:23)\n    at dispatch (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/hono/dist/compose.js:7:32)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/src/middleware/zod-error-handler.ts:6:11)\n    at zodErrorHandler (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/src/middleware/zod-error-handler.ts:4:39)\n    at <anonymous> (/home/code-savant-al/ALL/PERSONAL_PROJECTS/BE/stx-support-be/node_modules/hono/dist/compose.js:29:23)","timestamp":"2024-09-30T18:19:49.705Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:20:03.650Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:20:05.391Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:20:07.816Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:20:16.808Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:20:17.740Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:20:19.138Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:20:24.514Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:20:25.809Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:20:45.512Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:48:16.822Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:48:23.389Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:48:24.441Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:48:34.711Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:49:07.686Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:49:25.228Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:49:26.620Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:49:56.542Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:49:57.933Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:53:19.358Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:53:24.318Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:53:26.972Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:53:28.281Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:54:09.968Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Auth middleware","timestamp":"2024-09-30T18:54:13.477Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:54:21.920Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:55:29.924Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:56:09.660Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:56:23.241Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:56:57.314Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-09-30T18:57:31.965Z"}
