@@ -11,7 +11,7 @@ export const users = pgTable(
     coverImg: text("cover_img"),
     about: text("about"),
     stxAddressTestnet: text("stx_address_testnet"),
-    stxAddressMainnet: text("stx_address_mainnet"),
+    stxAddressMainnet: text("stx_address_mainnet").notNull(),
     btcAddressTestnet: text("btc_address_testnet"),
     btcAddressMainnet: text("btc_address_mainnet"),
     password_hash: text("password_hash").notNull(),

@@ -6,7 +6,12 @@ import { db } from "../db";
 import { users as usersTable } from "../db/schema/users";
 import { eq } from "drizzle-orm";
 import logger from "../utils/logger";
-import { generatePasswdHash, verifyPasswdHash } from "../utils/auth";
+import {
+  createAccessToken,
+  generatePasswdHash,
+  verifyPasswdHash,
+} from "../utils/auth";
+import { accessTokenMiddleware, authMiddleware } from "./middleware";
 
 export const authRouter = new Hono();
 
@@ -36,7 +41,35 @@ authRouter.post("/login", async (c) => {
     );
 
     if (isMatch) {
-      return c.json({ message: "Login successful" }, 200);
+      const {
+        token: accessToken,
+        expiryTimestamp: accessTokenExpiryTimestamp,
+      } = await createAccessToken({
+        stxAddressMainnet: existingUser.stxAddressMainnet as string,
+        id: existingUser.id,
+      });
+      const {
+        token: refreshToken,
+        expiryTimestamp: refreshTokenExpiryTimestamp,
+      } = await createAccessToken({
+        stxAddressMainnet: existingUser.stxAddressMainnet as string,
+        id: existingUser.id,
+      });
+
+      return c.json(
+        {
+          message: "Login successful",
+          accessToken,
+          refreshToken,
+          accessTokenExpiryTimestamp,
+          refreshTokenExpiryTimestamp,
+          user: {
+            id: existingUser.id,
+            stxAddressMainnet: existingUser.stxAddressMainnet,
+          },
+        },
+        200,
+      );
     } else {
       return c.json({ status_code: 401, detail: "Invalid credentials" }, 401);
     }
@@ -101,7 +134,14 @@ authRouter.get("/refresh", async (c) => {
   }
 });
 
-authRouter.post("/logout", async (c) => {
+authRouter.get("/logout", accessTokenMiddleware, async (c) => {
   // Implement logout logic (e.g., invalidate refresh token)
-  return c.json({ message: "Logged out successfully" });
+  const user = c.get("user");
+  console.log(JSON.stringify(user, null, 2));
+  return c.json(
+    {
+      message: `Logged ${user.stxAddressMainnet} out successfully`,
+    },
+    200,
+  );
 });
