@@ -73,9 +73,7 @@ export const refreshTokenMiddleware = createMiddleware(async (c, next) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    console.log("accessToken");
     const payload = await verify(token, settings.SECRET_KEY as string);
-    console.log(JSON.stringify(payload, null, 2), "from accedd");
 
     if (!payload.refresh_token) {
       console.log("Hmmmm");
