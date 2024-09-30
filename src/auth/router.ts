@@ -11,7 +11,11 @@ import {
   generatePasswdHash,
   verifyPasswdHash,
 } from "../utils/auth";
-import { accessTokenMiddleware, authMiddleware } from "./middleware";
+import {
+  accessTokenMiddleware,
+  authMiddleware,
+  validTokenMiddleware,
+} from "./middleware";
 
 export const authRouter = new Hono();
 
@@ -134,14 +138,19 @@ authRouter.get("/refresh", async (c) => {
   }
 });
 
-authRouter.get("/logout", accessTokenMiddleware, async (c) => {
-  // Implement logout logic (e.g., invalidate refresh token)
-  const user = c.get("user");
-  console.log(JSON.stringify(user, null, 2));
-  return c.json(
-    {
-      message: `Logged ${user.stxAddressMainnet} out successfully`,
-    },
-    200,
-  );
-});
+authRouter.get(
+  "/logout",
+  validTokenMiddleware,
+  accessTokenMiddleware,
+  async (c) => {
+    // Implement logout logic (e.g., invalidate refresh token)
+    const user = c.get("user");
+    console.log(JSON.stringify(user, null, 2));
+    return c.json(
+      {
+        message: `Logged ${user.stxAddressMainnet} out successfully`,
+      },
+      200,
+    );
+  },
+);
