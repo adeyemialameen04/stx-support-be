@@ -30,6 +30,15 @@ export const openApiDoc = generateOpenApi(
     },
     servers: [{ url: "http://localhost:3000" }],
     tags: [{ name: "users", description: "User operations" }],
+    components: {
+      securitySchemas: {
+        BearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
   },
   {
     operationMapper: (operation, appRoute) => ({
