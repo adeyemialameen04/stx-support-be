@@ -1,36 +1,48 @@
-import { Hono } from "hono";
 import { logger } from "hono/logger";
 import { settings } from "./config/settings";
 import { swaggerUI } from "@hono/swagger-ui";
-import { registerUserEndpoints } from "./users/endpoints";
-import { openApiDoc } from "./api";
 import { main } from "./db";
-import { authRouter } from "./auth/router";
-import { authMiddleware } from "./auth/middleware";
 import { createPath } from "./utils/path";
-import { zodErrorHandler } from "./middleware/zod-error-handler";
+import { OpenAPIHono } from "@hono/zod-openapi";
+import * as userRouter from "./users";
+import * as authRouter from "./auth";
 
-const app = new Hono();
+const app = new OpenAPIHono();
 app.use("*", logger());
-app.use("*", zodErrorHandler);
 
-app.get("/openapi.json", (c) => {
-  return c.json(openApiDoc);
+app.doc("/openapi.json", (c) => ({
+  openapi: "3.0.0",
+  info: {
+    version: settings.VERSION,
+    title: settings.PROJECT_NAME,
+  },
+  servers: [
+    {
+      url: new URL(c.req.url).origin,
+      description: "Current environment",
+    },
+  ],
+}));
+
+app.openAPIRegistry.registerComponent("securitySchemes", "AccessTokenBearer", {
+  type: "http",
+  scheme: "bearer",
+  bearerFormat: "JWT",
 });
-app.get("/docs", swaggerUI({ url: "/openapi.json" }));
+
+app.openAPIRegistry.registerComponent("securitySchemes", "RefreshTokenBearer", {
+  type: "http",
+  scheme: "bearer",
+  bearerFormat: "JWT",
+});
+
+app.get("/docs", swaggerUI({ url: "openapi.json" }));
 
 app.get("/", (c) => {
   return c.json({ message: "Hello Hono!" });
 });
-app.route(createPath("/auth"), authRouter);
-
-app.use(createPath("/users/*"), authMiddleware);
-// app.get("/user", aut async (c) => {
-//   const user = c.var.get("user");
-//   return c.json({ user: user });
-// });
-
-registerUserEndpoints(app);
+app.route(createPath("/auth"), authRouter.default);
+app.route(createPath("/users"), userRouter.default);
 
 main();
 
