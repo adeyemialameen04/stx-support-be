@@ -1,4 +1,12 @@
-import { pgTable, text, uniqueIndex, uuid, varchar } from "drizzle-orm/pg-core";
+import { time } from "drizzle-orm/mysql-core";
+import {
+  pgTable,
+  text,
+  timestamp,
+  uniqueIndex,
+  uuid,
+  varchar,
+} from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export const users = pgTable(
@@ -15,6 +23,12 @@ export const users = pgTable(
     btcAddressTestnet: text("btc_address_testnet"),
     btcAddressMainnet: text("btc_address_mainnet"),
     password_hash: text("password_hash").notNull(),
+    createdAt: timestamp("created_at", { mode: "string" })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { mode: "string" })
+      .notNull()
+      .defaultNow(),
   },
   (table) => {
     return {

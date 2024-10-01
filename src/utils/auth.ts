@@ -2,8 +2,6 @@ import logger from "./logger";
 import { v4 as uuidv4 } from "uuid";
 import { sign, verify } from "hono/jwt";
 import { settings } from "../config/settings";
-import { Context, Next } from "hono";
-import { isTokenInRevoked } from "../db/redis";
 
 export const generatePasswdHash = async (password: string): Promise<string> => {
   const hash = await Bun.password.hash(password);
