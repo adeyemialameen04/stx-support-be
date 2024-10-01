@@ -1,29 +1,17 @@
 import { createRoute, z } from "@hono/zod-openapi";
 import { selectUserSchema } from "../db/schema/users";
-import { ZodObject } from "zod";
+import { ZodType } from "zod";
+import { notFoundError } from "../lib/schemas";
 
 const tags = ["users"];
 
-const jsonContent = (schema: ZodObject) => {
+export const jsonContent = (schema: ZodType) => {
   return {
     "application/json": {
       schema,
     },
   };
 };
-
-export const notFoundError = {
-  content: {
-    "application/json": {
-      schema: z
-        .object({
-          message: z.string(),
-        })
-        .openapi("NotFoundError"),
-    },
-  },
-  description: "Resource not found",
-} as const;
 
 const ParamsSchema = z.object({
   id: z
@@ -40,7 +28,7 @@ const ParamsSchema = z.object({
 
 export const getUser = createRoute({
   method: "get",
-  path: "/users/{id}",
+  path: "/{id}",
   request: {
     params: ParamsSchema,
   },
@@ -51,5 +39,18 @@ export const getUser = createRoute({
       description: "Retrieve the user",
     },
     404: notFoundError,
+  },
+  security: [{ AccessTokenBearer: [] }],
+});
+
+export const getAllUsers = createRoute({
+  method: "get",
+  path: "/all",
+  tags,
+  responses: {
+    200: {
+      content: jsonContent(selectUserSchema.array()),
+      description: "Get all users",
+    },
   },
 });
