@@ -1,36 +1,30 @@
-import { Hono } from "hono";
 import { logger } from "hono/logger";
 import { settings } from "./config/settings";
 import { swaggerUI } from "@hono/swagger-ui";
-import { registerUserEndpoints } from "./users/endpoints";
-import { openApiDoc } from "./api";
 import { main } from "./db";
 import { authRouter } from "./auth/router";
-import { authMiddleware } from "./auth/middleware";
 import { createPath } from "./utils/path";
-import { zodErrorHandler } from "./middleware/zod-error-handler";
+import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
+import router from "./users";
 
-const app = new Hono();
+const app = new OpenAPIHono();
 app.use("*", logger());
-app.use("*", zodErrorHandler);
 
-app.get("/openapi.json", (c) => {
-  return c.json(openApiDoc);
+app.doc("/doc", {
+  openapi: "3.0.0",
+  info: {
+    version: settings.VERSION,
+    title: settings.PROJECT_NAME,
+  },
 });
-app.get("/docs", swaggerUI({ url: "/openapi.json" }));
+
+app.get("/docs", swaggerUI({ url: "doc" }));
 
 app.get("/", (c) => {
   return c.json({ message: "Hello Hono!" });
 });
 app.route(createPath("/auth"), authRouter);
-
-app.use(createPath("/users/*"), authMiddleware);
-// app.get("/user", aut async (c) => {
-//   const user = c.var.get("user");
-//   return c.json({ user: user });
-// });
-
-registerUserEndpoints(app);
+app.route(createPath(""), router);
 
 main();
 

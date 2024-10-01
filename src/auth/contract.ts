@@ -1,8 +1,7 @@
-import { z } from "zod";
 import { initContract } from "@ts-rest/core";
-import { createPath } from "../utils/path";
 import { tokens } from "../utils/tokens";
 import { selectUserSchema } from "../db/schema/users";
+import { z } from "@hono/zod-openapi";
 
 const c = initContract();
 
@@ -33,10 +32,12 @@ export const authContract = c.router(
           refreshToken: z.string(),
           accessTokenExpiryTimestamp: z.number(),
           refreshTokenExpiryTimestamp: z.number(),
-          user: z.object({
-            id: z.string().uuid(),
-            stxAddressMainnet: z.string(),
-          }),
+          user: z
+            .object({
+              id: z.string().uuid(),
+              stxAddressMainnet: z.string(),
+            })
+            .openapi("User"),
         }),
         401: z.object({
           status_code: z.number().default(401),

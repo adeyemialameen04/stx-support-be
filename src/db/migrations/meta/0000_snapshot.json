@@ -1,6 +1,6 @@
 {
-  "id": "827660cd-41c4-420c-958e-6f3cda117913",
-  "prevId": "1ebb4d14-5ff7-4cd7-8a6f-69c05a1bf349",
+  "id": "c341907d-8dc8-4833-ab29-fc24207ec4e9",
+  "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -55,7 +55,7 @@
           "name": "stx_address_mainnet",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "btc_address_testnet": {
           "name": "btc_address_testnet",
@@ -68,6 +68,26 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
+        },
+        "password_hash": {
+          "name": "password_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
         }
       },
       "indexes": {
