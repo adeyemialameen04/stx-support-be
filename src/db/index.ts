@@ -1,8 +1,8 @@
 import postgres from "postgres";
 import { drizzle, PostgresJsDatabase } from "drizzle-orm/postgres-js";
 import logger from "../utils/logger";
-import { user } from "./schema/users";
 import env from "../env";
+import { userTable } from "./schema";
 
 export const client = postgres(env.DATABASE_URL, {
   ssl: "require",
