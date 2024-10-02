@@ -50,7 +50,6 @@ export const accessTokenMiddleware = createMiddleware(async (c, next) => {
 
 export const refreshTokenMiddleware = createMiddleware(async (c, next) => {
   const authorization = c.req.header("Authorization");
-  console.log(authorization, "FROM REFRESH");
   if (!authorization || !authorization.startsWith("Bearer ")) {
     return c.json(
       {
@@ -66,10 +65,8 @@ export const refreshTokenMiddleware = createMiddleware(async (c, next) => {
 
   try {
     const payload = await verify(token, settings.SECRET_KEY as string);
-    console.log(token, "new");
 
     if (!payload.refresh_token) {
-      console.log("Hmmmm");
       return c.json(
         {
           status: 401,
@@ -87,12 +84,12 @@ export const refreshTokenMiddleware = createMiddleware(async (c, next) => {
 
 export const validTokenMiddleware = createMiddleware<Env>(async (c, next) => {
   const authHeader = c.req.header("Authorization");
-  console.log(authHeader, "FROM VALID");
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return c.json(
       {
+        detail: "Authentication required. Access token is missing.",
         status: 401,
-        error: "Authentication required. Access token is missing.",
+        error: "Unauthorized",
       },
       401,
     );

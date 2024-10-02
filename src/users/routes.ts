@@ -2,6 +2,10 @@ import { createRoute, z } from "@hono/zod-openapi";
 import { selectUserSchema } from "../db/schema/users";
 import { jsonContent } from "../lib/helpers";
 import { createErrorSchema } from "../lib/schemas";
+import {
+  accessTokenMiddleware,
+  validTokenMiddleware,
+} from "../auth/middleware";
 
 const tags = ["users"];
 
@@ -21,6 +25,7 @@ const ParamsSchema = z.object({
 export const getUser = createRoute({
   method: "get",
   path: "/{id}",
+  middleware: [validTokenMiddleware, accessTokenMiddleware],
   request: {
     params: ParamsSchema,
   },

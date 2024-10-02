@@ -417,3 +417,12 @@
 {"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-10-02T04:18:56.971Z"}
 {"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-10-02T04:19:02.485Z"}
 {"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-10-02T04:19:16.249Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-10-02T04:20:58.820Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-10-02T04:21:08.460Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"about":null,"btcAddressMainnet":null,"btcAddressTestnet":null,"coverImg":null,"createdAt":"2024-10-02 00:20:38.973292","id":"79ac0481-6734-4143-a103-4561d9c69cc6","name":null,"password_hash":"$argon2id$v=19$m=65536,t=2,p=1$WND62CvpXoHAdJNfg7BJ/LZZ9+gnHnCzzcq5QFP/0Mw$j4nBJYDK2cI4TTFJ/1heqomFxNiPjCtqf86AFf0OnjU","profileImg":null,"stxAddressMainnet":"string","stxAddressTestnet":null,"updatedAt":"2024-10-02 00:20:38.973292","username":null},"timestamp":"2024-10-02T04:22:14.197Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-10-02T04:23:05.776Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-10-02T04:23:39.032Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-10-02T04:24:28.193Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"about":null,"btcAddressMainnet":null,"btcAddressTestnet":null,"coverImg":null,"createdAt":"2024-10-02 00:20:38.973292","id":"79ac0481-6734-4143-a103-4561d9c69cc6","name":null,"password_hash":"$argon2id$v=19$m=65536,t=2,p=1$WND62CvpXoHAdJNfg7BJ/LZZ9+gnHnCzzcq5QFP/0Mw$j4nBJYDK2cI4TTFJ/1heqomFxNiPjCtqf86AFf0OnjU","profileImg":null,"stxAddressMainnet":"string","stxAddressTestnet":null,"updatedAt":"2024-10-02 00:20:38.973292","username":null},"timestamp":"2024-10-02T04:24:57.430Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-10-02T04:27:15.994Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"running...","timestamp":"2024-10-02T04:27:33.052Z"}
