@@ -1,17 +1,9 @@
 import { createRoute, z } from "@hono/zod-openapi";
 import { selectUserSchema } from "../db/schema/users";
-import { ZodType } from "zod";
-import { notFoundError } from "../lib/schemas";
+import { jsonContent } from "../lib/helpers";
+import { createErrorSchema } from "../lib/schemas";
 
 const tags = ["users"];
-
-export const jsonContent = (schema: ZodType) => {
-  return {
-    "application/json": {
-      schema,
-    },
-  };
-};
 
 const ParamsSchema = z.object({
   id: z
@@ -38,7 +30,7 @@ export const getUser = createRoute({
       content: jsonContent(selectUserSchema.openapi("User")),
       description: "Retrieve the user",
     },
-    404: notFoundError,
+    404: createErrorSchema(404, "User not found", "Not found"),
   },
   security: [{ AccessTokenBearer: [] }],
 });

@@ -1,6 +1,3 @@
-import { Hono } from "hono";
-import { loginSchema } from "./contract";
-import { handleValidation } from "../utils/validation";
 import { db } from "../db";
 import { users as usersTable } from "../db/schema/users";
 import { eq } from "drizzle-orm";
@@ -10,18 +7,11 @@ import {
   generatePasswdHash,
   verifyPasswdHash,
 } from "../utils/auth";
-import {
-  accessTokenMiddleware,
-  refreshTokenMiddleware,
-  validTokenMiddleware,
-} from "./middleware";
 import { addJtiRevoked } from "../db/redis";
-import { OpenAPIHono } from "@hono/zod-openapi";
 import { AppRouteHandler } from "../lib/types";
-import { loginRoute } from "./routes";
+import { loginRoute, logoutRoute, refreshRoute, signupRoute } from "./routes";
 
 export const loginHandler: AppRouteHandler<typeof loginRoute> = async (c) => {
-  // try {
   const { stxAddressMainnet, password } = c.req.valid("json");
   const [existingUser] = await db
     .select()
@@ -32,10 +22,11 @@ export const loginHandler: AppRouteHandler<typeof loginRoute> = async (c) => {
   if (!existingUser) {
     return c.json(
       {
-        status: 404,
-        detail: "User does not exist",
+        status: 401,
+        detail: "Invalid username or password",
+        error: "Unauthorized",
       },
-      404,
+      401,
     );
   }
 
@@ -74,11 +65,76 @@ export const loginHandler: AppRouteHandler<typeof loginRoute> = async (c) => {
       200,
     );
   } else {
-    return c.json({ status: 401, detail: "Invalid credentials" }, 401);
+    return c.json(
+      {
+        status: 401,
+        detail: "Invalid username or password",
+        error: "Unauthorized",
+      },
+      401,
+    );
   }
-  // } catch (error) {
-  // return handleValidation(error, c);
-  // }
+};
+
+export const signupHandler: AppRouteHandler<typeof signupRoute> = async (c) => {
+  const { stxAddressMainnet, password } = c.req.valid("json");
+  const [existingUser] = await db
+    .select()
+    .from(usersTable)
+    .where(eq(usersTable.stxAddressMainnet, stxAddressMainnet));
+  logger.info(existingUser);
+
+  if (existingUser) {
+    return c.json(
+      {
+        status: 409,
+        detail: "Username already exists",
+        error: "Conflict",
+      },
+      409,
+    );
+  }
+
+  const hashedPasswd = await generatePasswdHash(password);
+  logger.info(hashedPasswd);
+
+  const [newUser] = await db
+    .insert(usersTable)
+    .values({
+      stxAddressMainnet: stxAddressMainnet,
+      password_hash: hashedPasswd,
+    })
+    .returning();
+
+  const { password_hash, ...userWithoutPassword } = newUser;
+
+  return c.json(userWithoutPassword, 201);
+};
+
+export const refreshhandler: AppRouteHandler<typeof refreshRoute> = async (
+  c,
+) => {
+  const payload = c.get("jwtPayload");
+  const { token: accessToken, expiryTimestamp: accessTokenExpiryTimestamp } =
+    await createAccessToken({
+      stxAddressMainnet: payload.user.stxAddressMainnet,
+      id: payload.user.id,
+    });
+
+  return c.json({ accessToken, accessTokenExpiryTimestamp });
+};
+
+export const logoutHandler: AppRouteHandler<typeof logoutRoute> = async (c) => {
+  const payload = c.get("jwtPayload");
+  console.log(JSON.stringify(payload, null, 2));
+  await addJtiRevoked(payload?.jti);
+  return c.json(
+    {
+      status: 200,
+      detail: "Logout successful",
+    },
+    200,
+  );
 };
 
 // authRouter.post("/login", async (c) => {

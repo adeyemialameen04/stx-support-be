@@ -1,11 +1,33 @@
 import { createRoute, z } from "@hono/zod-openapi";
-import { loginSchema } from "./contract";
-import { jsonContent } from "../users/routes";
-import { ZodError } from "zod";
-import { ZodErrorSchema } from "@ts-rest/core";
-import { notFoundError, unauthorizedError } from "../lib/schemas";
+import { selectUserSchema } from "../db/schema/users";
+import {
+  accessTokenSecurity,
+  jsonContent,
+  refreshTokenSecurity,
+} from "../lib/helpers";
+import {
+  accessTokenMiddleware,
+  refreshTokenMiddleware,
+  validTokenMiddleware,
+} from "./middleware";
+import { createErrorSchema } from "../lib/schemas";
 
 const tags = ["auth"];
+
+export const authSchema = z.object({
+  stxAddressMainnet: z.string().min(1),
+  password: z.string().min(6),
+});
+
+export const payloadSchema = z.object({
+  user: z.object({
+    stxAddressMainnet: z.string(),
+    id: z.string().uuid(),
+  }),
+  exp: z.number(),
+  jti: z.string().uuid(),
+  refresh_token: z.boolean(),
+});
 
 const loginResponse = z
   .object({
@@ -14,14 +36,12 @@ const loginResponse = z
     refreshToken: z.string(),
     accessTokenExpiryTimestamp: z.number(),
     refreshTokenExpiryTimestamp: z.number(),
-    user: z
-      .object({
-        id: z.string().uuid(),
-        stxAddressMainnet: z.string(),
-      })
-      .openapi("User"),
+    user: z.object({
+      id: z.string().uuid(),
+      stxAddressMainnet: z.string(),
+    }),
   })
-  .openapi("LoginSchema");
+  .openapi("LoginResponse");
 
 export const loginRoute = createRoute({
   method: "post",
@@ -31,7 +51,7 @@ export const loginRoute = createRoute({
     body: {
       content: {
         "application/json": {
-          schema: loginSchema,
+          schema: authSchema.openapi("Auth"),
         },
       },
     },
@@ -41,7 +61,73 @@ export const loginRoute = createRoute({
       content: jsonContent(loginResponse),
       description: "Login",
     },
-    404: notFoundError,
-    401: unauthorizedError,
+    401: createErrorSchema(401, "Invalid username or password", "Unauthorized"),
   },
+});
+
+export const signupRoute = createRoute({
+  method: "post",
+  path: "/signup",
+  tags,
+  request: {
+    body: {
+      content: {
+        "application/json": {
+          schema: authSchema,
+        },
+      },
+    },
+  },
+  responses: {
+    201: {
+      content: jsonContent(selectUserSchema),
+      description: "Sign up",
+    },
+    409: createErrorSchema(409, "Username already exists", "Conflict"),
+  },
+});
+
+export const refreshRoute = createRoute({
+  method: "get",
+  path: "/refresh",
+  middleware: [validTokenMiddleware, refreshTokenMiddleware],
+  responses: {
+    200: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            accessToken: z.string(),
+            accessTokenExpiryTimestamp: z
+              .number()
+              .openapi({ example: Math.floor(Date.now() / 1000) }),
+          }),
+        },
+      },
+      description: "Refresh Access Tokens",
+    },
+    // 401: createErrorSchema(401, "string", "Unauthorized"),
+  },
+  security: refreshTokenSecurity,
+  tags,
+});
+
+export const logoutRoute = createRoute({
+  method: "get",
+  path: "/logout",
+  middleware: [validTokenMiddleware, accessTokenMiddleware],
+  responses: {
+    200: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            status: z.number().default(200),
+            detail: z.string().default("Logout successful"),
+          }),
+        },
+      },
+      description: "Log user out",
+    },
+  },
+  tags,
+  security: accessTokenSecurity,
 });
