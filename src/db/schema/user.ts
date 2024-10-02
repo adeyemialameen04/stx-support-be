@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   pgTable,
   text,
@@ -7,6 +8,7 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import { commentTable, postTable } from ".";
 
 export const user = pgTable(
   "user",
@@ -40,3 +42,8 @@ export const insertUserSchema = createInsertSchema(user);
 export const selectUserSchema = createSelectSchema(user).omit({
   password_hash: true,
 });
+
+export const userRelations = relations(user, ({ many }) => ({
+  posts: many(postTable),
+  // comments: many(commentTable),
+}));

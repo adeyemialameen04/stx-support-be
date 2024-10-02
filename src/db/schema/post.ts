@@ -9,6 +9,8 @@ import {
 } from "drizzle-orm/pg-core";
 import { category } from "./category";
 import { user } from "./user";
+import { relations } from "drizzle-orm";
+import { categoryTable, commentTable, userTable } from ".";
 
 export const statusEnum = pgEnum("status", ["published", "draft", "archived"]);
 
@@ -27,3 +29,15 @@ export const post = pgTable("post", {
   createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
 });
+
+export const postRelations = relations(post, ({ one, many }) => ({
+  user: one(userTable, {
+    fields: [post.userId],
+    references: [userTable.id],
+  }),
+  comments: many(commentTable),
+  category: one(categoryTable, {
+    fields: [post.categoryId],
+    references: [categoryTable.id],
+  }),
+}));

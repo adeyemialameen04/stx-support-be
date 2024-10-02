@@ -44,6 +44,6 @@ app.get("/", (c) => {
 app.route(createPath("/auth"), authRouter.default);
 app.route(createPath("/users"), userRouter.default);
 
-main();
+await main();
 
 export default app;
