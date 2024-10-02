@@ -1,11 +1,11 @@
 import { createRoute, z } from "@hono/zod-openapi";
-import { selectUserSchema } from "../db/schema/users";
-import { jsonContent } from "../lib/helpers";
-import { createErrorSchema } from "../lib/schemas";
 import {
   accessTokenMiddleware,
   validTokenMiddleware,
 } from "../auth/middleware";
+import { jsonContent } from "@/lib/helpers";
+import { createErrorSchema } from "@/lib/schemas";
+import { selectUserSchema } from "@/db/schema/user";
 
 const tags = ["users"];
 
