@@ -1,4 +1,3 @@
-import { time } from "drizzle-orm/mysql-core";
 import {
   pgTable,
   text,
@@ -9,8 +8,8 @@ import {
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
-export const users = pgTable(
-  "users",
+export const user = pgTable(
+  "user",
   {
     id: uuid("id").primaryKey().defaultRandom(),
     username: varchar("username", { length: 255 }).unique(),
@@ -37,7 +36,7 @@ export const users = pgTable(
   },
 );
 
-export const insertUserSchema = createInsertSchema(users);
-export const selectUserSchema = createSelectSchema(users).omit({
+export const insertUserSchema = createInsertSchema(user);
+export const selectUserSchema = createSelectSchema(user).omit({
   password_hash: true,
 });

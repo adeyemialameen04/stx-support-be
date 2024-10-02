@@ -1,7 +1,7 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { getAllUsers, getUser } from "./routes";
-import { AppBindings } from "../lib/types";
 import { getAllUsersHandler, getUserHandler } from "./handlers";
+import { AppBindings } from "@/lib/types";
 
 const route = new OpenAPIHono<AppBindings>();
 

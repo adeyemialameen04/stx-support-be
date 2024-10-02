@@ -1,7 +1,7 @@
 import { initServer } from "ts-rest-hono";
 import { contract } from "./contract";
 import { db } from "../db";
-import { users as userTable } from "../db/schema/users";
+import { user as userTable } from "../db/schema/users";
 import logger from "../utils/logger";
 import { eq } from "drizzle-orm";
 import { handleNotFound } from "../utils/api";

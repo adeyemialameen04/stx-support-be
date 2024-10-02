@@ -1,8 +1,8 @@
-import { db } from "../db";
-import { users as userTable } from "../db/schema/users";
 import { eq } from "drizzle-orm";
-import { AppRouteHandler } from "../lib/types";
 import { getAllUsers, getUser } from "./routes";
+import { db } from "@/db";
+import { userTable } from "@/db/schema";
+import { AppRouteHandler } from "@/lib/types";
 
 export const getUserHandler: AppRouteHandler<typeof getUser> = async (c) => {
   const { id } = c.req.valid("param");
@@ -13,7 +13,10 @@ export const getUserHandler: AppRouteHandler<typeof getUser> = async (c) => {
     .limit(1);
 
   if (!user) {
-    return c.json({ status: 404, detail: "User not found" }, 404);
+    return c.json(
+      { status: 404, detail: "User not found", error: "Not found" },
+      404,
+    );
   }
 
   return c.json(user, 200);

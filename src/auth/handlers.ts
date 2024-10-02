@@ -1,22 +1,22 @@
-import { db } from "../db";
-import { users as usersTable } from "../db/schema/users";
 import { eq } from "drizzle-orm";
-import logger from "../utils/logger";
 import {
+  verifyPasswdHash,
   createAccessToken,
   generatePasswdHash,
-  verifyPasswdHash,
-} from "../utils/auth";
-import { addJtiRevoked } from "../db/redis";
-import { AppRouteHandler } from "../lib/types";
-import { loginRoute, logoutRoute, refreshRoute, signupRoute } from "./routes";
+} from "@/utils/auth";
+import logger from "@/utils/logger";
+import { db } from "@/db";
+import { addJtiRevoked } from "@/db/redis";
+import { AppRouteHandler } from "@/lib/types";
+import { userTable } from "@/db/schema";
+import { loginRoute, signupRoute, refreshRoute, logoutRoute } from "./routes";
 
 export const loginHandler: AppRouteHandler<typeof loginRoute> = async (c) => {
   const { stxAddressMainnet, password } = c.req.valid("json");
   const [existingUser] = await db
     .select()
-    .from(usersTable)
-    .where(eq(usersTable.stxAddressMainnet, stxAddressMainnet));
+    .from(userTable)
+    .where(eq(userTable.stxAddressMainnet, stxAddressMainnet));
   logger.info(existingUser);
 
   if (!existingUser) {
@@ -80,8 +80,8 @@ export const signupHandler: AppRouteHandler<typeof signupRoute> = async (c) => {
   const { stxAddressMainnet, password } = c.req.valid("json");
   const [existingUser] = await db
     .select()
-    .from(usersTable)
-    .where(eq(usersTable.stxAddressMainnet, stxAddressMainnet));
+    .from(userTable)
+    .where(eq(userTable.stxAddressMainnet, stxAddressMainnet));
   logger.info(existingUser);
 
   if (existingUser) {
@@ -99,7 +99,7 @@ export const signupHandler: AppRouteHandler<typeof signupRoute> = async (c) => {
   logger.info(hashedPasswd);
 
   const [newUser] = await db
-    .insert(usersTable)
+    .insert(userTable)
     .values({
       stxAddressMainnet: stxAddressMainnet,
       password_hash: hashedPasswd,
