@@ -1,4 +1,5 @@
 import { RouteConfig, RouteHandler } from "@hono/zod-openapi";
+import { Payload } from "../../auth/middleware";
 
 export type Env = {
   SECRET: string;
@@ -7,7 +8,7 @@ export type Env = {
 export type AppBindings = {
   Bindings: Env;
   Variables: {
-    // user: selectUse | null;
+    jwtPayload: Payload;
   };
 };
 

@@ -10,8 +10,8 @@ import * as authRouter from "./auth";
 const app = new OpenAPIHono();
 app.use("*", logger());
 
-app.doc("/openapi.json", (c) => ({
-  openapi: "3.0.0",
+app.doc31("/openapi.json", (c) => ({
+  openapi: "3.1.0",
   info: {
     version: settings.VERSION,
     title: settings.PROJECT_NAME,
