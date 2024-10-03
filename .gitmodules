@@ -1,0 +1,6 @@
+[submodule "stx-support-shared"]
+	path = stx-support-shared
+	url = git@github.com:adeyemialameen04/stx-support-shared.git
+[submodule "shared"]
+	path = shared
+	url = git@github.com:adeyemialameen04/stx-support-shared.git

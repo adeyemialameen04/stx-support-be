@@ -7,6 +7,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { postTable, userTable } from ".";
 import { relations } from "drizzle-orm";
+import { createInsertSchema } from "drizzle-zod";
 
 export const comment = pgTable("comment", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
@@ -30,3 +31,8 @@ export const commentRelations = relations(comment, ({ one }) => ({
     references: [postTable.id],
   }),
 }));
+
+export const insertCommentScheme = createInsertSchema(comment).omit({
+  id: true,
+  createdAt: true,
+});
